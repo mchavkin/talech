@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {useTranslation} from "react-i18next";
+import useTranslation from "../../../utils/useTranslation";
 import TranslateIcon from "@material-ui/icons/Translate";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 

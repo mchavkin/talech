@@ -1,0 +1,31 @@
+{
+  "language": "lietuvių",
+  "title": "Talech sandėlis",
+  "yes": "Taip",
+  "no": "Ne",
+  "field": {
+    "name": "Pavadinimas",
+    "ean":  "EAN",
+    "type": "Tipas",
+    "weight":  "Svoris",
+    "color":  "Spalva",
+    "active":  "Aktyvus",
+    "quantity": "Kiekis",
+    "price": "Kaina"
+  },
+  "buttons": {
+    "view": "peržiūrėti",
+    "edit": "redaguoti",
+    "delete": "panaikinti",
+    "save": "išsaugoti",
+    "cancel": "atšaukti"
+  },
+  "validation": {
+    "NaN": "$t(field.{{path}}) turi būti skaičius",
+    "integer": "$t(field.{{path}}) turi būti sveikas skaičius",
+    "positive": "$t(field.{{path}}) turi būti teigiamas skaičius",
+    "maxError": "Lauke '$t(field.{{path}})' negalima vesti skaičius didesnius už {{max}}",
+    "eanRules": "Įvestas skaičius neatitinka EAN taisyklėms",
+    "required": "Laukas '$t(field.{{path}})' yra privalomas"
+  }
+}

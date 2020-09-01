@@ -1,0 +1,31 @@
+{
+  "language": "english",
+  "title": "Talech warehouse",
+  "yes": "Yes",
+  "no": "No",
+  "field": {
+    "name": "Name",
+    "ean":  "EAN",
+    "type": "Type",
+    "weight":  "Weight",
+    "color":  "Color",
+    "active":  "Active",
+    "quantity": "Quantity",
+    "price": "Price"
+  },
+  "buttons": {
+    "view": "view",
+    "edit": "edit",
+    "delete": "delete",
+    "save": "save",
+    "cancel": "cancel"
+  },
+  "validation": {
+    "NaN": "$t(field.{{path}}) must be a number",
+    "integer": "$t(field.{{path}}) must be an integer",
+    "positive": "$t(field.{{path}}) must be a positive number",
+    "maxError": "$t(field.{{path}}) input must be less than {{max}}",
+    "eanRules": "This is not a valid EAN number",
+    "required": "$t(field.{{path}}) is required"
+  }
+}
