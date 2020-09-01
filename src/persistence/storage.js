@@ -15,7 +15,7 @@ export const addEntry = (entry) => {
     if (warehouse.some(e => e.ean === entry.ean)) {
         throw new Error('ean conflict');
     }
-    updateWarehouse(warehouse.push(entry));
+    updateWarehouse(warehouse.concat(entry));
     return SUCCESS;
 }
 
@@ -24,8 +24,10 @@ export const editEntry = (ean, entry) => {
     if (ean !== entry.ean && warehouse.some(e => e.ean === entry.ean)) {
         throw new Error('ean conflict');
     }
-    const entryIndex = warehouse.indexOf(e => e.ean === ean);
-    updateWarehouse(warehouse[entryIndex] = entry);
+    const entryIndex = warehouse.findIndex(e => e.ean === ean);
+    warehouse[entryIndex] = entry
+    debugger
+    updateWarehouse(warehouse);
     return SUCCESS;
 }
 
@@ -58,13 +60,15 @@ export const getPage = (page, entriesPerPage, sortBy, sortDirection = 'asc') => 
     if (sortBy) {
         warehouse.sort(compareEntries(sortBy, sortDirection))
     }
+    const total = warehouse.length;
     const start = (page - 1) * entriesPerPage;
     const end = start + entriesPerPage;
+    const entries = total > end ? warehouse.slice(start, end) : warehouse.slice(0, entriesPerPage)
     return ({
         page,
         entriesPerPage,
-        entries: warehouse.slice(start, end),
-        total: warehouse.length
+        entries,
+        total
     })
 
 }

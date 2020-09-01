@@ -5,22 +5,22 @@ import * as persistence from '../persistence/storage'
 
 const wrapFunctionInPromise = (func) => (...args) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        try{
+        try {
             resolve(func(...args));
-        }catch (error){
+        } catch (error) {
             reject(error);
         }
     }, 1000);
 });
 
 
-const api = Object.getOwnPropertyNames(persistence)
+const api = () => Object.getOwnPropertyNames(persistence)
     .map(funcName => (
         {
-            funcName: wrapFunctionInPromise(persistence[funcName])
+            [funcName]: wrapFunctionInPromise(persistence[funcName])
         }
     )).reduce(Object.assign, {})
 
-export default api;
+export default api();
 
 

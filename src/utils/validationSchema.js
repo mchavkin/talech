@@ -21,7 +21,8 @@ yup.setLocale({
     number: {
         positive: ({path}) => ({key: 'validation.positive', options: {path}}),
         integer: ({path}) => ({key: 'validation.integer', options: {path}}),
-        max: ({path, max}) => ({key: 'validation.maxError', options: {path, max}})
+        max: ({path, max}) => ({key: 'validation.maxError', options: {path, max}}),
+        min: ({path, min}) => ({key: 'validation.minError', options: {path, min}})
     }
 })
 
@@ -33,6 +34,6 @@ export const productValidationSchema = yup.object().shape({
     type: yup.string().required(),
     price: yup.number().required().positive().nullable()
         .transform(emptyStringToNull),
-    quantity: yup.number().required().positive().integer().nullable()
+    quantity: yup.number().required().integer().min(0).nullable()
         .transform(emptyStringToNull)
 })

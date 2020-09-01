@@ -18,7 +18,8 @@
     "edit": "redaguoti",
     "delete": "panaikinti",
     "save": "išsaugoti",
-    "cancel": "atšaukti"
+    "cancel": "atšaukti",
+    "list": "atgal į sąrašą"
   },
   "validation": {
     "NaN": "$t(field.{{path}}) turi būti skaičius",
@@ -26,6 +27,7 @@
     "positive": "$t(field.{{path}}) turi būti teigiamas skaičius",
     "maxError": "Lauke '$t(field.{{path}})' negalima vesti skaičius didesnius už {{max}}",
     "eanRules": "Įvestas skaičius neatitinka EAN taisyklėms",
-    "required": "Laukas '$t(field.{{path}})' yra privalomas"
+    "required": "Laukas '$t(field.{{path}})' yra privalomas",
+    "minError": "Lauke '$t(field.{{path}})' negalima vesti skaičius mažesnius už {{min}}"
   }
 }

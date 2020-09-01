@@ -18,14 +18,16 @@
     "edit": "edit",
     "delete": "delete",
     "save": "save",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "list": "back to list"
   },
   "validation": {
     "NaN": "$t(field.{{path}}) must be a number",
     "integer": "$t(field.{{path}}) must be an integer",
     "positive": "$t(field.{{path}}) must be a positive number",
-    "maxError": "$t(field.{{path}}) input must be less than {{max}}",
+    "maxError": "$t(field.{{path}}) input allowed maximum is {{max}}",
     "eanRules": "This is not a valid EAN number",
-    "required": "$t(field.{{path}}) is required"
+    "required": "$t(field.{{path}}) is required",
+    "minError": "$t(field.{{path}}) input allowed minimum is {{min}}"
   }
 }

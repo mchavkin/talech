@@ -1,10 +1,11 @@
 import React from "react";
 import {useHistory} from "react-router";
-import {Button, Table, TableHead, TableRow, TableCell, TableBody} from "@material-ui/core";
+import {Button, Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
-import {initialData} from "../../../persistence/initialData"
+import {useDispatch, useSelector} from "react-redux";
+import {getPage} from "../../../redux/actions";
 
 
 const fields = ['name', 'ean', 'type', 'weight', 'color', 'active', 'quantity', 'price'];
@@ -21,23 +22,17 @@ const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 750,
     },
-    visuallyHidden: {
-        border: 0,
-        clip: 'rect(0 0 0 0)',
-        height: 1,
-        margin: -1,
-        overflow: 'hidden',
-        padding: 0,
-        position: 'absolute',
-        top: 20,
-        width: 1,
-    },
 }));
 
 export default function List() {
     const classes = useStyles();
     const {t} = useTranslation();
     const history = useHistory();
+    const loading = useSelector(state => state.loading);
+    const entries = useSelector(state => state.entries);
+    const dispatch = useDispatch();
+
+    if (loading) dispatch(getPage());
 
 
     return (
@@ -59,14 +54,19 @@ export default function List() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {initialData.map(product =>
+                        {entries.map(product =>
                             <TableRow
                                 key={product.ean}
                                 selected={!product.quantity}
                             >
                                 {fields.map((fieldName, i) =>
                                     <TableCell key={i}>
-                                        {product[fieldName]}
+                                        <span>{
+                                            Array.isArray(product[fieldName]) ?
+                                                product[fieldName].join(', ') :
+                                                product[fieldName]
+                                        }
+                                        </span>
                                     </TableCell>
                                 )}
                                 <TableCell>

@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import useTranslation from "../../utils/useTranslation";
 import LanguageSelector from "./components/LanguageSelector";
 import {useHistory} from "react-router";
+import {useDispatch} from "react-redux";
+import {loading} from "../../redux/actions";
 
 const useStyles = makeStyles({
     title: {
@@ -17,7 +19,11 @@ export default function LanguageBar() {
     const classes = useStyles();
     const {t} = useTranslation();
     const history = useHistory();
-    const navigateToHome = () => history.push('/')
+    const dispatch = useDispatch();
+    const navigateToHome = () => {
+        dispatch(loading())
+        history.push('/')
+    }
 
     return (
         <AppBar position="static">
