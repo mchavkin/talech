@@ -1,14 +1,14 @@
 import React from "react";
 import {useHistory} from "react-router";
-import {Button, Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
+import {Button, Table, TableBody, TableCell, TableHead, TableRow, Checkbox} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
 import {useDispatch, useSelector} from "react-redux";
-import {getPage} from "../../../redux/actions";
+import {editEntry, getPage} from "../../../redux/actions";
 
 
-const fields = ['name', 'ean', 'type', 'weight', 'color', 'active', 'quantity', 'price'];
+const fields = ['name', 'ean', 'type', 'weight', 'color', 'quantity', 'price'];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,6 +34,11 @@ export default function List() {
 
     if (loading) dispatch(getPage());
 
+    const handleActiveChange = (entry) => {
+        const newEntry = {...entry, active: !entry.active}
+        dispatch(editEntry(entry.ean, newEntry));
+    }
+
 
     return (
         <div className={classes.root}>
@@ -41,6 +46,11 @@ export default function List() {
                 <Table>
                     <TableHead>
                         <TableRow>
+                            <TableCell
+                                id='active'
+                            >
+                                {t(`field.active`)}
+                            </TableCell>
                             {fields.map(fieldName =>
                                 <TableCell
                                     id={fieldName}
@@ -48,8 +58,7 @@ export default function List() {
                                 >
                                     {t(`field.${fieldName}`)}
                                 </TableCell>
-                            )
-                            }
+                            )}
                             <TableCell/>
                         </TableRow>
                     </TableHead>
@@ -59,6 +68,14 @@ export default function List() {
                                 key={product.ean}
                                 selected={!product.quantity}
                             >
+                                <TableCell>
+                                    <Checkbox
+                                        checked={product.active}
+                                        onClick={() => handleActiveChange(product)}
+                                        color="primary"
+                                    />
+                                </TableCell>
+
                                 {fields.map((fieldName, i) =>
                                     <TableCell key={i}>
                                         <span>{
