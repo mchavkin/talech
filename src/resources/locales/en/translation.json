@@ -30,5 +30,11 @@
     "eanRules": "This is not a valid EAN number",
     "required": "$t(field.{{path}}) is required",
     "minError": "$t(field.{{path}}) input allowed minimum is {{min}}"
+  },
+  "messages": {
+    "addSuccess": "New product have been added",
+    "editSuccess": "The product info was updated",
+    "removeSuccess": "Product EAN{{ean}} was deleted",
+    "eanConflict": "There is another product with the same EAN"
   }
 }

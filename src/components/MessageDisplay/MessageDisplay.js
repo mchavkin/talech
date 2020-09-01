@@ -3,11 +3,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import {useDispatch, useSelector} from "react-redux";
 import {clearMessage} from "../../redux/actions";
+import useTranslation from "../../utils/useTranslation";
 
 export default function MessageDisplay() {
     const message = useSelector(state => state.message);
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     const handleClose = () => dispatch(clearMessage());
+    debugger
     return (
         <Snackbar
             open={!!message}
@@ -22,7 +25,7 @@ export default function MessageDisplay() {
                     severity={message.severity}
                     onClose={handleClose}
                 >
-                    {message.message}
+                    {t(message.message)}
                 </MuiAlert>
             )}
         </Snackbar>

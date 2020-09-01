@@ -1,7 +1,10 @@
 import {initialData} from "./initialData";
 
 const WAREHOUSE = 'warehouse';
-const SUCCESS = 'success';
+const ADD_SUCCESS = 'messages.addSuccess';
+const EDIT_SUCCESS = 'messages.editSuccess';
+const REMOVE_SUCCESS = 'messages.removeSuccess';
+const EAN_CONFLICT = 'messages.eanConflict'
 
 
 const getAllEntries = () => JSON.parse(localStorage.getItem(WAREHOUSE)) || initialData;
@@ -13,27 +16,27 @@ const updateWarehouse = (warehouse) => {
 export const addEntry = (entry) => {
     const warehouse = getAllEntries();
     if (warehouse.some(e => e.ean === entry.ean)) {
-        throw new Error('ean conflict');
+        throw new Error(EAN_CONFLICT);
     }
     updateWarehouse(warehouse.concat(entry));
-    return SUCCESS;
+    return ADD_SUCCESS;
 }
 
 export const editEntry = (ean, entry) => {
     const warehouse = getAllEntries();
     if (ean !== entry.ean && warehouse.some(e => e.ean === entry.ean)) {
-        throw new Error('ean conflict');
+        throw new Error(EAN_CONFLICT);
     }
     const entryIndex = warehouse.findIndex(e => e.ean === ean);
     warehouse[entryIndex] = entry
     updateWarehouse(warehouse);
-    return SUCCESS;
+    return EDIT_SUCCESS;
 }
 
 export const removeEntry = (ean) => {
     const warehouse = getAllEntries();
     updateWarehouse(warehouse.filter(e => ean !== e.ean));
-    return SUCCESS;
+    return ({key: REMOVE_SUCCESS, options: {ean}});
 }
 
 export const getEntry = (ean) => {
