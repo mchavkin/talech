@@ -4,7 +4,7 @@ import {Button, Table, TableHead, TableRow, TableCell, TableBody} from "@materia
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
-import {data} from "../../../resources/initialData/data"
+import {initialData} from "../../../persistence/initialData"
 
 
 const fields = ['name', 'ean', 'type', 'weight', 'color', 'active', 'quantity', 'price'];
@@ -59,7 +59,7 @@ export default function List() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map(product =>
+                        {initialData.map(product =>
                             <TableRow
                                 key={product.ean}
                                 selected={!product.quantity}

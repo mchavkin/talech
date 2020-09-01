@@ -1,4 +1,4 @@
-export const data = [
+export const initialData = [
     {
         name: 'Socks',
         ean: '13413o41874',
