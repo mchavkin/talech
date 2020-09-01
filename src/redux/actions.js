@@ -9,7 +9,7 @@ export function clearMessage() {
     return ({type: CLEAR_MESSAGE});
 }
 
-export function loading(){
+export function loading() {
     return ({type: LOADING});
 }
 
@@ -42,10 +42,10 @@ export function getPage() {
 export function addEntry(entry) {
     return async function (dispatch) {
         dispatch(loading());
-        try{
+        try {
             const message = await api.addEntry(entry);
             dispatch(showMessage({message, severity: 'info'}));
-        }catch (error) {
+        } catch (error) {
             dispatch(showMessage({message: error.message, severity: 'error'}))
         }
     }
@@ -54,10 +54,22 @@ export function addEntry(entry) {
 export function editEntry(ean, entry) {
     return async function (dispatch) {
         dispatch(loading());
-        try{
+        try {
             const message = await api.editEntry(ean, entry);
             dispatch(showMessage({message, severity: 'info'}));
-        }catch (error) {
+        } catch (error) {
+            dispatch(showMessage({message: error.message, severity: 'error'}))
+        }
+    }
+}
+
+export function removeEntry(ean) {
+    return async function (dispatch) {
+        dispatch(loading());
+        try {
+            const message = await api.removeEntry(ean);
+            dispatch(showMessage({message, severity: 'info'}));
+        } catch (error) {
             dispatch(showMessage({message: error.message, severity: 'error'}))
         }
     }

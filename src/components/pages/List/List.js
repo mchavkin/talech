@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
 import {useDispatch, useSelector} from "react-redux";
-import {editEntry, getPage} from "../../../redux/actions";
+import {removeEntry, editEntry, getPage} from "../../../redux/actions";
 
 
 const fields = ['name', 'ean', 'type', 'weight', 'color', 'quantity', 'price'];
@@ -22,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 750,
     },
+    bottomButton: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding: theme.spacing(3)
+    }
 }));
 
 export default function List() {
@@ -37,6 +42,10 @@ export default function List() {
     const handleActiveChange = (entry) => {
         const newEntry = {...entry, active: !entry.active}
         dispatch(editEntry(entry.ean, newEntry));
+    }
+
+    const deleteEntry = (ean) => {
+        dispatch(removeEntry(ean));
     }
 
 
@@ -87,13 +96,16 @@ export default function List() {
                                     </TableCell>
                                 )}
                                 <TableCell>
-                                    <Button onClick={() => history.push(`/${product.ean}`)}>
+                                    <Button variant="outlined" color="primary"
+                                            onClick={() => history.push(`/${product.ean}`)}>
                                         {t('buttons.view')}
                                     </Button>
-                                    <Button onClick={() => history.push(`/${product.ean}/edit`)}>
+                                    <Button variant="contained" color="primary"
+                                            onClick={() => history.push(`/${product.ean}/edit`)}>
                                         {t('buttons.edit')}
                                     </Button>
-                                    <Button>
+                                    <Button variant="contained" color="primary"
+                                            onClick={() => deleteEntry(product.ean)}>
                                         {t('buttons.delete')}
                                     </Button>
                                 </TableCell>
@@ -103,7 +115,11 @@ export default function List() {
                     </TableBody>
 
                 </Table>
-
+                <div className={classes.bottomButton}>
+                    <Button variant="contained" color="primary" onClick={() => history.push('/create')}>
+                        {t('buttons.new')}
+                    </Button>
+                </div>
             </Paper>
         </div>
     )

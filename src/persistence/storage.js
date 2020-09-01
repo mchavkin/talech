@@ -26,7 +26,6 @@ export const editEntry = (ean, entry) => {
     }
     const entryIndex = warehouse.findIndex(e => e.ean === ean);
     warehouse[entryIndex] = entry
-    debugger
     updateWarehouse(warehouse);
     return SUCCESS;
 }

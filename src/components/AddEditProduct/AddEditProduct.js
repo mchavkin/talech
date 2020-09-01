@@ -65,7 +65,6 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
 
 
     const [inputs, setInputs] = useState(initialInputs);
-    debugger
 
     const handleInputChange = field => evt => {
         setInputs({...inputs, [field]: evt.target.value})
@@ -78,7 +77,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'name'}
                     value={inputs['name']}
-                    label={t(`field.${'name'}`)}
+                    label={t(`field.name`)}
                     onChange={handleInputChange('name')}
                     required
                     error={!!errors.name}
@@ -90,7 +89,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'ean'}
                     value={inputs['ean']}
-                    label={t(`field.${'ean'}`)}
+                    label={t(`field.ean`)}
                     onChange={handleInputChange('ean')}
                     required
                     error={!!errors.ean}
@@ -102,7 +101,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'type'}
                     value={inputs['type']}
-                    label={t(`field.${'type'}`)}
+                    label={t(`field.type`)}
                     onChange={handleInputChange('type')}
                     required
                     error={!!errors.type}
@@ -114,7 +113,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'weight'}
                     value={inputs['weight']}
-                    label={t(`field.${'weight'}`)}
+                    label={t(`field.weight`)}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">kg</InputAdornment>,
                     }}
@@ -138,7 +137,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                             </div>)
                     }}
                     value={inputs.color}
-                    label={t(`field.${'color'}`)}
+                    label={t(`field.color`)}
                     onChange={handleInputChange('color')}
                     variant="outlined"
                     color="primary"
@@ -158,7 +157,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                     select
                     name={'active'}
                     value={inputs['active']}
-                    label={t(`field.${'active'}`)}
+                    label={t('field.active')}
                     onChange={handleInputChange('active')}
                     variant="outlined"
                     color="primary"
@@ -173,7 +172,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'quantity'}
                     value={inputs['quantity']}
-                    label={t(`field.${'quantity'}`)}
+                    label={t(`field.quantity`)}
                     onChange={handleInputChange('quantity')}
                     required
                     error={!!errors.quantity}
@@ -185,7 +184,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <TextField
                     name={'price'}
                     value={inputs['price']}
-                    label={t(`field.${'price'}`)}
+                    label={t(`field.price`)}
                     InputProps={{
                         startAdornment: <InputAdornment position="start">€</InputAdornment>,
                     }}

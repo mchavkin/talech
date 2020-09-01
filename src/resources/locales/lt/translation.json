@@ -19,7 +19,8 @@
     "delete": "panaikinti",
     "save": "išsaugoti",
     "cancel": "atšaukti",
-    "list": "atgal į sąrašą"
+    "list": "atgal į sąrašą",
+    "new": "naujas"
   },
   "validation": {
     "NaN": "$t(field.{{path}}) turi būti skaičius",

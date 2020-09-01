@@ -19,7 +19,8 @@
     "delete": "delete",
     "save": "save",
     "cancel": "cancel",
-    "list": "back to list"
+    "list": "back to list",
+    "new": "new"
   },
   "validation": {
     "NaN": "$t(field.{{path}}) must be a number",
