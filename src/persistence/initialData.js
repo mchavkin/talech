@@ -1,7 +1,7 @@
 export const initialData = [
     {
         name: 'Socks',
-        ean: '13413o41874',
+        ean: 8920287710152,
         type: 'apparel',
         weight: 0.3,
         color: ['red', 'green'],
@@ -11,7 +11,7 @@ export const initialData = [
     },
     {
         name: 'Tie',
-        ean: '56336736',
+        ean: 3042518482937,
         type: 'apparel',
         weight: 0.2,
         color: ['black'],
@@ -21,7 +21,7 @@ export const initialData = [
     },
     {
         name: 'Beans',
-        ean: '36333563',
+        ean: 1563370838356,
         type: 'Jars',
         weight: 0.3,
         color: ['red', 'black'],
@@ -31,9 +31,9 @@ export const initialData = [
     },
     {
         name: 'Mercedes',
-        ean: '53634563653',
+        ean: 1880823145268,
         type: 'car',
-        weight: 5000,
+        weight: 50,
         color: [],
         active: true,
         quantity: 2,

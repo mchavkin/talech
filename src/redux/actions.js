@@ -5,7 +5,7 @@ import {
     SET_ENTRIES,
     SELECTED_ENTRY,
     SET_PAGE,
-    SET_ENTRIES_PER_PAGE
+    SET_ENTRIES_PER_PAGE, SORT_BY, DIRECTION
 } from "./actionTypes";
 import api from "../api/api";
 import store from "./store";
@@ -107,15 +107,28 @@ export function getEntry(ean) {
 }
 
 export function setPage(page) {
-    return({
+    return ({
         type: SET_PAGE,
         page
     })
 }
 
 export function setEntriesPerPage(entriesPerPage) {
-    return({
+    return ({
         type: SET_ENTRIES_PER_PAGE,
         entriesPerPage
+    })
+}
+
+export function setSortBy(field) {
+    return ({
+        type: SORT_BY,
+        sortBy: field
+    })
+}
+
+export function changeSortingDirection() {
+    return ({
+        type: DIRECTION,
     })
 }

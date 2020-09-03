@@ -7,3 +7,5 @@ export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 
 export const SET_PAGE = 'SET_PAGE';
 export const SET_ENTRIES_PER_PAGE = 'SET_ENTRIES_PER_PAGE';
+export const SORT_BY = 'SORT_BY';
+export const DIRECTION ='DIRECTION';

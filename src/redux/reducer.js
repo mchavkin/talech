@@ -5,7 +5,7 @@ import {
     SET_ENTRIES,
     SHOW_MESSAGE,
     SET_PAGE,
-    SET_ENTRIES_PER_PAGE
+    SET_ENTRIES_PER_PAGE, SORT_BY, DIRECTION
 } from "./actionTypes";
 
 const initialState = {
@@ -66,6 +66,23 @@ export default function (state = initialState, action) {
             return ({
                 ...state,
                 entriesPerPage: action.entriesPerPage
+            })
+        }
+        case SORT_BY: {
+            return ({
+                ...state,
+                page: 0,
+                direction: 'asc',
+                loading: true,
+                sortBy: action.sortBy
+            })
+        }
+        case DIRECTION: {
+            return ({
+                ...state,
+                page: 0,
+                loading: true,
+                direction: 'asc' === state.direction? 'desc': 'asc',
             })
         }
         default:

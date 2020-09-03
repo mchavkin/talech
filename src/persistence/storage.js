@@ -49,13 +49,18 @@ export const getEntry = (ean) => {
 
 const compareEntries = (sortBy, direction) => (a, b) => {
     const dir = direction === 'desc' ? -1 : 1;
-    if (a < b) {
-        return dir;
+
+    if (isNaN(a[sortBy]) || isNaN(b[sortBy])) {
+        if (a[sortBy].toLowerCase() < b[sortBy].toLowerCase()) {
+            return -dir;
+        }
+        if (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) {
+            return dir;
+        }
+        return 0;
     }
-    if (a > b) {
-        return -dir;
-    }
-    return 0;
+
+    return (Number(a[sortBy]) - Number(b[sortBy])) * dir;
 }
 
 export const getPage = (page, entriesPerPage, sortBy, sortDirection = 'asc') => {

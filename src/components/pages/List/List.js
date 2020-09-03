@@ -5,11 +5,27 @@ import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
 import {useDispatch, useSelector} from "react-redux";
-import {getEntries, removeEntry, saveEditedEntry, selectEntry} from "../../../redux/actions";
+import {
+    changeSortingDirection,
+    getEntries,
+    removeEntry,
+    saveEditedEntry,
+    selectEntry,
+    setSortBy
+} from "../../../redux/actions";
 import ListPaginator from "./ListPaginator";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 
-const fields = ['name', 'ean', 'type', 'weight', 'color', 'quantity', 'price'];
+const fields = [
+    {name: 'name', sortable: true},
+    {name: 'ean', sortable: true},
+    {name: 'type', sortable: false},
+    {name: 'weight', sortable: false},
+    {name: 'color', sortable: false},
+    {name: 'quantity', sortable: true},
+    {name: 'price', sortable: true},
+];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,6 +52,8 @@ export default function List() {
     const history = useHistory();
     const loading = useSelector(state => state.loading);
     const entries = useSelector(state => state.entries);
+    const sortBy = useSelector(state => state.sortBy);
+    const direction = useSelector(state => state.direction);
     const dispatch = useDispatch();
 
     if (loading) dispatch(getEntries());
@@ -54,6 +72,14 @@ export default function List() {
         history.push(`/${entry.ean}${edit ? '/edit' : ''}`);
     }
 
+    const handleSort = (field) => {
+        if (field === sortBy) {
+            dispatch(changeSortingDirection());
+        } else {
+            dispatch(setSortBy(field));
+        }
+    }
+
 
     return (
         <div className={classes.root}>
@@ -66,12 +92,22 @@ export default function List() {
                             >
                                 {t(`field.active`)}
                             </TableCell>
-                            {fields.map(fieldName =>
+                            {fields.map(field =>
                                 <TableCell
-                                    id={fieldName}
-                                    key={fieldName}
+                                    id={field.name}
+                                    key={field.name}
                                 >
-                                    {t(`field.${fieldName}`)}
+                                    {field.sortable ?
+                                        <TableSortLabel
+                                            active={sortBy === field.name}
+                                            direction={sortBy === field.name ? direction : 'asc'}
+                                            onClick={() => handleSort(field.name)}
+                                        >
+                                            {t(`field.${field.name}`)}
+                                        </TableSortLabel>
+                                        :
+                                        t(`field.${field.name}`)
+                                    }
                                 </TableCell>
                             )}
                             <TableCell/>
@@ -91,12 +127,12 @@ export default function List() {
                                     />
                                 </TableCell>
 
-                                {fields.map((fieldName, i) =>
+                                {fields.map((field, i) =>
                                     <TableCell key={i}>
                                         <span>{
-                                            Array.isArray(product[fieldName]) ?
-                                                product[fieldName].join(', ') :
-                                                product[fieldName]
+                                            Array.isArray(product[field.name]) ?
+                                                product[field.name].join(', ') :
+                                                product[field.name]
                                         }
                                         </span>
                                     </TableCell>
