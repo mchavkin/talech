@@ -31,5 +31,9 @@
     "eanRules": "Įvestas skaičius neatitinka EAN taisyklėms",
     "required": "Laukas '$t(field.{{path}})' yra privalomas",
     "minError": "Lauke '$t(field.{{path}})' negalima vesti skaičius mažesnius už {{min}}"
+  },
+  "pagination": {
+    "rowsPerPage": "Prekių puslapyje",
+    "of": "iš"
   }
 }

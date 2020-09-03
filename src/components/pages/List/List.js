@@ -1,11 +1,12 @@
 import React from "react";
 import {useHistory} from "react-router";
-import {Button, Table, TableBody, TableCell, TableHead, TableRow, Checkbox} from "@material-ui/core";
+import {Button, Checkbox, Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
 import {useDispatch, useSelector} from "react-redux";
-import {removeEntry, saveEditedEntry, getPage, selectEntry} from "../../../redux/actions";
+import {getEntries, removeEntry, saveEditedEntry, selectEntry} from "../../../redux/actions";
+import ListPaginator from "./ListPaginator";
 
 
 const fields = ['name', 'ean', 'type', 'weight', 'color', 'quantity', 'price'];
@@ -37,7 +38,7 @@ export default function List() {
     const entries = useSelector(state => state.entries);
     const dispatch = useDispatch();
 
-    if (loading) dispatch(getPage());
+    if (loading) dispatch(getEntries());
 
     const handleActiveChange = (entry) => {
         const newEntry = {...entry, active: !entry.active}
@@ -48,9 +49,9 @@ export default function List() {
         dispatch(removeEntry(ean));
     }
 
-    const handleSelectEntry =  (entry, edit) => {
+    const handleSelectEntry = (entry, edit) => {
         dispatch(selectEntry(entry));
-        history.push(`/${entry.ean}${edit ? '/edit': ''}`);
+        history.push(`/${entry.ean}${edit ? '/edit' : ''}`);
     }
 
 
@@ -102,7 +103,9 @@ export default function List() {
                                 )}
                                 <TableCell>
                                     <Button variant="outlined" color="primary"
-                                            onClick={() => {handleSelectEntry(product);}}>
+                                            onClick={() => {
+                                                handleSelectEntry(product);
+                                            }}>
                                         {t('buttons.view')}
                                     </Button>
                                     <Button variant="contained" color="primary"
@@ -120,6 +123,7 @@ export default function List() {
                     </TableBody>
 
                 </Table>
+                <ListPaginator/>
                 <div className={classes.bottomButton}>
                     <Button variant="contained" color="primary" onClick={() => history.push('/create')}>
                         {t('buttons.new')}

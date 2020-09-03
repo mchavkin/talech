@@ -32,6 +32,10 @@
     "required": "$t(field.{{path}}) is required",
     "minError": "$t(field.{{path}}) input allowed minimum is {{min}}"
   },
+  "pagination": {
+    "rowsPerPage": "Products per page",
+    "of": "of"
+  },
   "messages": {
     "addSuccess": "New product have been added",
     "editSuccess": "The product info was updated",

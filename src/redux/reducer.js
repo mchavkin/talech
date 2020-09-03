@@ -1,9 +1,17 @@
-import {CLEAR_MESSAGE, SELECTED_ENTRY, LOADING, SET_PAGE, SHOW_MESSAGE} from "./actionTypes";
+import {
+    CLEAR_MESSAGE,
+    SELECTED_ENTRY,
+    LOADING,
+    SET_ENTRIES,
+    SHOW_MESSAGE,
+    SET_PAGE,
+    SET_ENTRIES_PER_PAGE
+} from "./actionTypes";
 
 const initialState = {
     loading: true,
-    page: 1,
-    entriesPerPage: 20,
+    page: 0,
+    entriesPerPage: 5,
     entries: [],
     total: 0,
     message: null,
@@ -34,7 +42,7 @@ export default function (state = initialState, action) {
                 message: null,
             });
         }
-        case SET_PAGE: {
+        case SET_ENTRIES: {
             return ({
                 ...state,
                 ...action.payload,
@@ -42,10 +50,22 @@ export default function (state = initialState, action) {
                 loading: false
             })
         }
-        case SELECTED_ENTRY :{
+        case SELECTED_ENTRY : {
             return ({
                 ...state,
                 selectedEntry: action.entry
+            })
+        }
+        case SET_PAGE: {
+            return ({
+                ...state,
+                page: action.page
+            })
+        }
+        case SET_ENTRIES_PER_PAGE: {
+            return ({
+                ...state,
+                entriesPerPage: action.entriesPerPage
             })
         }
         default:

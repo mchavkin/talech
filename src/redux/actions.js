@@ -1,4 +1,12 @@
-import {CLEAR_MESSAGE, SHOW_MESSAGE, LOADING, SET_PAGE, SELECTED_ENTRY} from "./actionTypes";
+import {
+    CLEAR_MESSAGE,
+    SHOW_MESSAGE,
+    LOADING,
+    SET_ENTRIES,
+    SELECTED_ENTRY,
+    SET_PAGE,
+    SET_ENTRIES_PER_PAGE
+} from "./actionTypes";
 import api from "../api/api";
 import store from "./store";
 
@@ -24,13 +32,13 @@ export function showMessage(message) {
 }
 
 
-export function getPage() {
+export function getEntries() {
     const {page, entriesPerPage, sortBy, direction} = store.getState();
     return async function (dispatch) {
         try {
             const payload = await api.getPage(page, entriesPerPage, sortBy, direction);
             dispatch({
-                type: SET_PAGE,
+                type: SET_ENTRIES,
                 payload
             });
         } catch (error) {
@@ -96,4 +104,18 @@ export function getEntry(ean) {
             dispatch(showMessage({message: error.message, severity: 'error'}))
         }
     }
+}
+
+export function setPage(page) {
+    return({
+        type: SET_PAGE,
+        page
+    })
+}
+
+export function setEntriesPerPage(entriesPerPage) {
+    return({
+        type: SET_ENTRIES_PER_PAGE,
+        entriesPerPage
+    })
 }

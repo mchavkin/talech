@@ -64,9 +64,9 @@ export const getPage = (page, entriesPerPage, sortBy, sortDirection = 'asc') => 
         warehouse.sort(compareEntries(sortBy, sortDirection))
     }
     const total = warehouse.length;
-    const start = (page - 1) * entriesPerPage;
+    const start = page * entriesPerPage;
     const end = start + entriesPerPage;
-    const entries = total > end ? warehouse.slice(start, end) : warehouse.slice(0, entriesPerPage)
+    const entries = total > start ? warehouse.slice(start, end) : warehouse.slice(0, entriesPerPage)
     return ({
         page,
         entriesPerPage,
