@@ -117,7 +117,7 @@ export default function List() {
                         {entries.map(product =>
                             <TableRow
                                 key={product.ean}
-                                selected={!product.quantity}
+                                selected={Number(product.quantity) === 0}
                             >
                                 <TableCell>
                                     <Checkbox
