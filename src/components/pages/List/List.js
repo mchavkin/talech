@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import useTranslation from "../../../utils/useTranslation";
 import {useDispatch, useSelector} from "react-redux";
-import {removeEntry, editEntry, getPage} from "../../../redux/actions";
+import {removeEntry, saveEditedEntry, getPage, selectEntry} from "../../../redux/actions";
 
 
 const fields = ['name', 'ean', 'type', 'weight', 'color', 'quantity', 'price'];
@@ -41,11 +41,16 @@ export default function List() {
 
     const handleActiveChange = (entry) => {
         const newEntry = {...entry, active: !entry.active}
-        dispatch(editEntry(entry.ean, newEntry));
+        dispatch(saveEditedEntry(entry.ean, newEntry));
     }
 
     const deleteEntry = (ean) => {
         dispatch(removeEntry(ean));
+    }
+
+    const handleSelectEntry =  (entry, edit) => {
+        dispatch(selectEntry(entry));
+        history.push(`/${entry.ean}${edit ? '/edit': ''}`);
     }
 
 
@@ -97,15 +102,15 @@ export default function List() {
                                 )}
                                 <TableCell>
                                     <Button variant="outlined" color="primary"
-                                            onClick={() => history.push(`/${product.ean}`)}>
+                                            onClick={() => {handleSelectEntry(product);}}>
                                         {t('buttons.view')}
                                     </Button>
                                     <Button variant="contained" color="primary"
-                                            onClick={() => history.push(`/${product.ean}/edit`)}>
+                                            onClick={() => handleSelectEntry(product, true)}>
                                         {t('buttons.edit')}
                                     </Button>
                                     <Button variant="contained" color="primary"
-                                            onClick={() => deleteEntry(product.ean)}>
+                                            onClick={() => deleteEntry()}>
                                         {t('buttons.delete')}
                                     </Button>
                                 </TableCell>

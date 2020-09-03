@@ -5,6 +5,7 @@ const ADD_SUCCESS = 'messages.addSuccess';
 const EDIT_SUCCESS = 'messages.editSuccess';
 const REMOVE_SUCCESS = 'messages.removeSuccess';
 const EAN_CONFLICT = 'messages.eanConflict'
+const NOT_FOUND = 'messages.notFound'
 
 
 const getAllEntries = () => JSON.parse(localStorage.getItem(WAREHOUSE)) || initialData;
@@ -42,7 +43,7 @@ export const removeEntry = (ean) => {
 export const getEntry = (ean) => {
     const warehouse = getAllEntries();
     const entry = warehouse.find(e => ean === e.ean);
-    if (!entry) throw new Error('notFound');
+    if (!entry) throw new Error(NOT_FOUND);
     return entry;
 }
 

@@ -1,6 +1,7 @@
 {
   "language": "english",
   "title": "Talech warehouse",
+  "product": "Product",
   "yes": "Yes",
   "no": "No",
   "field": {
@@ -35,6 +36,7 @@
     "addSuccess": "New product have been added",
     "editSuccess": "The product info was updated",
     "removeSuccess": "Product EAN{{ean}} was deleted",
-    "eanConflict": "There is another product with the same EAN"
+    "eanConflict": "There is another product with the same EAN",
+    "notFound": "Product not found"
   }
 }

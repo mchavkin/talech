@@ -10,7 +10,6 @@ export default function MessageDisplay() {
     const dispatch = useDispatch();
     const {t} = useTranslation();
     const handleClose = () => dispatch(clearMessage());
-    debugger
     return (
         <Snackbar
             open={!!message}

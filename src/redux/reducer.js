@@ -1,4 +1,4 @@
-import {CLEAR_MESSAGE, LOADING, SET_PAGE, SHOW_MESSAGE} from "./actionTypes";
+import {CLEAR_MESSAGE, SELECTED_ENTRY, LOADING, SET_PAGE, SHOW_MESSAGE} from "./actionTypes";
 
 const initialState = {
     loading: true,
@@ -8,7 +8,8 @@ const initialState = {
     total: 0,
     message: null,
     sortBy: null,
-    direction: 'asc'
+    direction: 'asc',
+    currentEntry: null
 };
 
 export default function (state = initialState, action) {
@@ -37,7 +38,14 @@ export default function (state = initialState, action) {
             return ({
                 ...state,
                 ...action.payload,
+                currentEntry: null,
                 loading: false
+            })
+        }
+        case SELECTED_ENTRY :{
+            return ({
+                ...state,
+                selectedEntry: action.entry
             })
         }
         default:
