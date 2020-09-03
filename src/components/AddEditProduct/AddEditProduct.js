@@ -139,8 +139,8 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                         multiple: true,
                         renderValue: (selected) => (
                             <div className={classes.chips}>
-                                {selected.map((value) => (
-                                    <Chip key={value} label={value} className={classes.chip}/>
+                                {selected.map((colorOption) => (
+                                    <Chip key={colorOption} label={t(`colors.${colorOption}`)} className={classes.chip}/>
                                 ))}
                             </div>)
                     }}
@@ -156,7 +156,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                                 <ListItemIcon>
                                     <StopIcon style={{color: colorOption}}/>
                                 </ListItemIcon>
-                                <ListItemText primary={colorOption}/>
+                                <ListItemText primary={t(`colors.${colorOption}`)}/>
                             </MenuItem>
                         )
                     )}

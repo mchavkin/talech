@@ -6,11 +6,11 @@
   "no": "Ne",
   "field": {
     "name": "Pavadinimas",
-    "ean":  "EAN",
+    "ean": "EAN",
     "type": "Tipas",
-    "weight":  "Svoris",
-    "color":  "Spalva",
-    "active":  "Aktyvus",
+    "weight": "Svoris",
+    "color": "Spalva",
+    "active": "Aktyvus",
     "quantity": "Kiekis",
     "price": "Kaina"
   },
@@ -35,5 +35,22 @@
   "pagination": {
     "rowsPerPage": "Prekių puslapyje",
     "of": "iš"
+  },
+  "messages": {
+    "addSuccess": "Pridėtas naujas produktas",
+    "editSuccess": "Produkto aprašymas atnaujintas",
+    "removeSuccess": "Produktas EAN{{ean}} panaikintas",
+    "eanConflict": "Yra kitas produktas su nurodytu EAN numeriu",
+    "notFound": "Produktas nerastas"
+  },
+  "colors": {
+    "black": "juoda",
+    "white": "balta",
+    "red": "raudona",
+    "orange": "oranžinė",
+    "yellow": "geltona",
+    "green": "žalia",
+    "blue": "mėlyna",
+    "violet": "violetinė"
   }
 }

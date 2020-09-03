@@ -53,7 +53,7 @@ export default function Preview() {
                         <span>
                             {
                                 Array.isArray(entry[property]) ?
-                                    entry[property].join(', ') :
+                                    entry[property].map(a => t(`colors.${a}`)).join(', ') :
                                     entry[property]}
                         </span>
                     </Typography>

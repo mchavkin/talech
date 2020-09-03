@@ -6,11 +6,11 @@
   "no": "No",
   "field": {
     "name": "Name",
-    "ean":  "EAN",
+    "ean": "EAN",
     "type": "Type",
-    "weight":  "Weight",
-    "color":  "Color",
-    "active":  "Active",
+    "weight": "Weight",
+    "color": "Color",
+    "active": "Active",
     "quantity": "Quantity",
     "price": "Price"
   },
@@ -42,5 +42,15 @@
     "removeSuccess": "Product EAN{{ean}} was deleted",
     "eanConflict": "There is another product with the same EAN",
     "notFound": "Product not found"
+  },
+  "colors": {
+    "black": "black",
+    "white": "white",
+    "red": "red",
+    "orange": "orange",
+    "yellow": "yellow",
+    "green": "green",
+    "blue": "blue",
+    "violet": "violet"
   }
 }

@@ -131,7 +131,7 @@ export default function List() {
                                     <TableCell key={i}>
                                         <span>{
                                             Array.isArray(product[field.name]) ?
-                                                product[field.name].join(', ') :
+                                                product[field.name].map(a => t(`colors.${a}`)).join(', ') :
                                                 product[field.name]
                                         }
                                         </span>
