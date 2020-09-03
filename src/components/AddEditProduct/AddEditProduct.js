@@ -19,6 +19,8 @@ import {
 
 import StopIcon from '@material-ui/icons/Stop';
 import {colors} from "../../resources/colors";
+import {useDispatch} from "react-redux";
+import {loading} from "../../redux/actions";
 
 const useStyles = makeStyles(theme => ({
         container: {
@@ -57,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 export default function AddEditProduct({onSubmit, initialInputs}) {
     const classes = useStyles()
     const {t} = useTranslation();
+    const dispatch = useDispatch();
     const {register, handleSubmit, errors} = useForm({
         resolver: yupResolver(productValidationSchema),
         reValidateMode: "onBlur"
@@ -67,9 +70,14 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
     const [inputs, setInputs] = useState(initialInputs);
 
     const handleInputChange = field => evt => {
-        setInputs({...inputs, [field]: evt.target.value})
+        setInputs({...inputs, [field]: evt.target.value});
     }
-    const submitInputs = () => onSubmit(inputs)
+    const submitInputs = () => onSubmit(inputs);
+
+    const backToList = () => {
+        dispatch(loading());
+        history.push('/');
+    }
 
     return (
         <div className={classes.container}>
@@ -201,7 +209,7 @@ export default function AddEditProduct({onSubmit, initialInputs}) {
                 <div className={classes.buttons}>
                     <Button type="submit" variant="contained" color="primary">{t('buttons.save')}</Button>
                     <Button variant="outlined" color="primary"
-                            onClick={() => history.push('/')}>{t('buttons.list')}</Button>
+                            onClick={backToList}>{t('buttons.list')}</Button>
                 </div>
             </form>
         </div>
